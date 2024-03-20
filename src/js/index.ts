@@ -5,7 +5,7 @@ function arrayWrap<T>(value: T | T[]): T[] {
     return Array.isArray(value) ? value : [value];
 }
 
-export default function useHybridFieldArray<T>({name = "", onChange, value, options}: {
+export default function useHybridFieldArray<T extends object>({name = "", onChange, value, options}: {
     name?: string,
     onChange?: (value: T[]) => void | Promise<void>,
     value?: T[],
@@ -13,6 +13,7 @@ export default function useHybridFieldArray<T>({name = "", onChange, value, opti
 }) {
     const form = useFormContext();
     const fieldArray = useFieldArray({name, control: form?.control, rules: options});
+    const fields: (Partial<T> & {id?: string})[] = (name && form) ? fieldArray.fields as any : value ?? [];
 
     const append = useCallback((defaultValue: T | T[]) => {
         fieldArray.append(defaultValue);
@@ -67,5 +68,5 @@ export default function useHybridFieldArray<T>({name = "", onChange, value, opti
         value && onChange?.(value.filter((_, currentIndex) => !filter.has(currentIndex)));
     }, [onChange, value, fieldArray]);
 
-    return {append, prepend, insert, swap, move, update, replace, remove};
+    return {fields, append, prepend, insert, swap, move, update, replace, remove};
 }
