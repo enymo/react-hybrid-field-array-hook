@@ -1,0 +1,37 @@
+{
+  "name": "@enymo/react-hybrid-field-array-hook",
+  "version": "0.0.0",
+  "description": "Hook to create field arrays that work both as controlled inputs and as part of a react form",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "tsup": {
+    "entry": [
+      "src/js/index.ts"
+    ],
+    "format": [
+      "esm",
+      "cjs"
+    ],
+    "dts": true
+  },
+  "scripts": {
+    "build": "tsup"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/enymo/react-hybrid-field-array-hook.git"
+  },
+  "author": "enymo GmbH",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^18.2.67",
+    "postcss": "^8.4.17",
+    "tsup": "^6.2.2",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-hook-form": "7.34.2"
+  }
+}
