@@ -13,7 +13,7 @@ export default function useHybridFieldArray<T extends object>({name = "", onChan
 }) {
     const form = useFormContext();
     const fieldArray = useFieldArray({name, control: form?.control, rules: options});
-    const fields: (Partial<T> & {id?: string})[] = (name && form) ? fieldArray.fields as any : value ?? [];
+    const fields: (T & {id?: string})[] = (name && form) ? fieldArray.fields as any : value ?? [];
 
     const append = useCallback((defaultValue: T | T[]) => {
         fieldArray.append(defaultValue);
